@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #0b0f1a;
+            --accent-color: #6366f1;
+            /* Modern Indigo */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Main Glass Card */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 4rem 3rem;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(to bottom right, #ffffff 30%, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s, background 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        .feature-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Button Interaction */
+        .action-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 1rem;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .glass-card {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="logo">Nexus<span>Lab</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Architecture</a></li>
+            <li><a href="#">Network</a></li>
+            <li><a href="#">Systems</a></li>
+        </ul>
+        <button class="action-btn" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;" onclick="toggleTheme()">Sync
+            Node</button>
+    </nav>
+
+    <main>
+        <section class="glass-card">
+            <h1>Unified Systems Design</h1>
+            <p>Deploying advanced infrastructure and scalable web environments with enterprise-grade precision.</p>
+
+            <div class="features">
+                <div class="feature-item" onclick="notify('Network Active')">
+                    <h3>Core Networking</h3>
+                    <p>Optimized L3 routing and high-availability switching.</p>
+                </div>
+                <div class="feature-item" onclick="notify('Storage Synced')">
+                    <h3>Virtualization</h3>
+                    <p>Bare-metal hypervisors and container orchestration.</p>
+                </div>
+                <div class="feature-item" onclick="notify('Security Shield Up')">
+                    <h3>Security</h3>
+                    <p>Hardened kernel policies and perimeter defense.</p>
+                </div>
+            </div>
+
+            <button class="action-btn" id="mainAction">Initialize Protocol</button>
+        </section>
+    </main>
+
+    <script>
+        // Simple Interaction logic
+        const mainBtn = document.getElementById('mainAction');
+
+        mainBtn.addEventListener('click', () => {
+            mainBtn.textContent = 'System Online';
+            mainBtn.style.background = '#10b981'; // Success Green
+
+            // Add a small shake effect
+            mainBtn.animate([
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-5px)' },
+                { transform: 'translateX(5px)' },
+                { transform: 'translateX(0)' }
+            ], { duration: 200 });
+
+            setTimeout(() => {
+                mainBtn.textContent = 'Initialize Protocol';
+                mainBtn.style.background = '#6366f1';
+            }, 3000);
+        });
+
+        function notify(msg) {
+            console.log(`Status: ${msg}`);
+            // You could add a toast notification here
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            // Simple toggle between two accent colors
+            const currentColor = getComputedStyle(root).getPropertyValue('--accent-color').trim();
+            if (currentColor === '#6366f1') {
+                root.style.setProperty('--accent-color', '#f43f5e'); // Rose
+            } else {
+                root.style.setProperty('--accent-color', '#6366f1'); // Indigo
+            }
+        }
+    </script>
+</body>
+
+</html>
